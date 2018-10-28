@@ -1,0 +1,60 @@
+\documentclass{article}
+
+  \usepackage[a4paper,
+              left=2cm,
+              right=1cm,
+              top=2cm,
+              bottom=2cm]{geometry}
+  
+  \usepackage{xltxtra}
+  \usepackage{polyglossia}
+  \usepackage{graphicx}
+  \usepackage{subfiles}
+  \usepackage{cancel}
+  \usepackage{hyperref}
+  
+  
+  \usepackage{amsmath,
+              amsthm,
+              unicode-math,
+              tensor,
+              algorithm,
+  }
+  
+  \linespread{1.3}
+  
+  \setmainlanguage{russian}
+  \setotherlanguage{english}
+  \setkeys{russian}{babelshorthands=true}
+  \defaultfontfeatures{Ligatures=TeX}
+  
+  \setmainfont{Calibri}
+  \setromanfont{Calibri}
+  \setsansfont{Calibri}
+  \setmathfont{Cambria Math}
+  
+  \newfontfamily{\cyrillicfont}{Calibri} 
+  \newfontfamily{\cyrillicfontrm}{Calibri}
+  \newfontfamily{\cyrillicfontsf}{Calibri}
+  \newfontfamily{\cyrillicfonttt}{Consolas}
+  
+  \addto\captionsrussian{
+    \renewcommand{\figurename}{Рис.}
+    \renewcommand{\tablename}{Табл.}
+    \renewcommand{\proofname}{Док-во}
+  }
+  
+  \numberwithin{equation}{section}
+  \numberwithin{figure}{section}
+  \numberwithin{table}{section}
+  
+  \theoremstyle{definition}
+  \newtheorem{definition}{Опр.}[section]
+  \theoremstyle{remark}
+  \newtheorem{statement}{Утв.}[section]
+  \theoremstyle{plain}
+  \newtheorem{theorem}{Теор.}[section]
+  
+  \graphicspath{{./img/}}
+  \everymath{\displaystyle}
+  
