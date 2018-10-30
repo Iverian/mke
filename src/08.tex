@@ -4,4 +4,55 @@
 
 \section{Возмущенный метод Галеркина. Лемма Стренга.}
 
+\subsection{Возмущенный метод Галеркина}
+
+Пусть $H$ -- гильбертово пространство и $H_{(.)}=(H_n, n \in \mathbb{Z}_+)$ -- последовательность замкнутых подпространств $H$.\\
+$B$ -- непрерывная и положительно определенная в $H$ билинейная форма, $f$ -- непрерывный в $H$ линейный функционал. \\
+Пусть $B_n$, $f_n$ $\forall n \in \mathbb{Z}_+$ -- непрерывная и положительно определенная в $H_n$ билинейная форма и непрерывный в $H_n$ линейный функционал.\\
+\underline{Исходная задача:}
+\begin{center}
+    Найти $u \in H$: $B(u, v)=f(v)$, $\forall v \in H$.
+\end{center}
+Ей в соответствие ставится \underline{возмущенная задача}:
+\begin{center}
+    Найти $u_n \in H_n$: $B_n(u_n, v_n)=f_n(v_n)$, $\forall v_n \in H_n$.
+\end{center}
+
+\subsection{Лемма Стренга}
+
+\begin{theorem}
+    (Лемма Стренга) Пусть
+    \begin{gather*}
+         |B_n(u,v)|\leqslant M_n ||u||\cdot ||v||, \ \forall u, v \in H_n\\
+         B_n(u,u) \geqslant \tilde{m} ||u||, \ \forall u \in H_n\\
+         ||f_n(u)||\leqslant C_n||u||, \ \forall u \in H_n
+    \end{gather*}
+    Тогда 
+    \begin{gather*}
+        ||u-u_n||\leqslant C (||u-v_n||+E^n_B(v_n)+E^n_f), \ \forall v_n \in H_n,
+    \end{gather*}
+    где 
+    \begin{gather*}
+        C=const>0, \\
+        E^n_B(v_n)=\sup_{\omega in u_n} \frac{|B(v_n, \omega)-B_n(v_n, \omega)|}{||\omega||},\\
+        E^n_f=\sup_{\omega in H} \frac{|f(\omega)-f_n(\omega)|}{||\omega||}
+    \end{gather*}
+\end{theorem}
+
+\begin{proof}
+    \begin{gather*}
+        B_n(u_n-v_n, u_n-v_n)=\underbrace{B_n(u, u_n-v_n)}_{f_n(u_n-v_n)} - B_n(v_n, u_n-v_n)= \\
+        =B(u-v_n,u_n-v_n)+ [B(v_n, u_n-v_n)-B_n(v_n, u_n-v_n)] + [f_n(u_n-v_n)-f(u_n-v_n)]\\
+        \tilde{m}^2||u_n-v_n||^2 \leqslant B(u_n-v_n,u_n-v_n)\leqslant M||u-v_n||\cdot ||u_n-v_n||+ |B(v_n, u_n-v_n)-B_n(v_n,u_n-v_n)|+\\+|f_n(u_n-v_n)-f(u_n-v_n)|
+    \end{gather*}
+Делим все неравенство на $||u_n-v_n||\cdot \tilde{m}^2$:
+\begin{gather*}
+    ||u_n-v_n||\leqslant\frac{1}{\tilde{m}^2}\left[M||u-v_n||+\frac{|B(v_n, u_n-v_n)-B_n(v_n, u_n-v_n)|}{||u_n-v_n||}\right.+\left. \frac{|f_n(u_n-v_n)-f(u_n-v_n)|}{||u_n-v_n||}\right] \leqslant \\ \leqslant \frac{1}{\tilde{m}^2}\left[M||u-v_n||+E^n_B(v_n)+E^n_f\right] \leqslant \tilde {c}\left[||u-v_n||+E^n_B(v_n)+E^n_f\right]
+\end{gather*}
+где $\tilde{c}=\dfrac{1}{\tilde{m}^2}\max\left\{M,1\right\}$.\\
+Оценим теперь: 
+\begin{gather*}
+    ||u-u_n||=||u-v_n+v_n-u_n||\leqslant ||u-v_n||+||v_n-u_n||=||u-v_n||+||u_n-v_n|| \leqslant \tilde{c}\left[||u-v_n||+E^n_B(v_n)+E^n_f\right] \ \forall v_n \in H_n
+\end{gather*}
+\end{proof}
 \end{document}
