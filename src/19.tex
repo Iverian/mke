@@ -4,4 +4,164 @@
 
 \section{Аффинно-эквивалентные области с липшицевой границей. Теорема об оценке полунорм в пространстве Соболева для аффинноэквивалентных областей. Теорема об оценке норм матриц при аффинном отображении областей.}
 
+\begin{definition}[Аффино - эквивалентные области]
+Пусть имеются 2 области $\Omega$ и $\tilde{\Omega}$, которые являются подобластями в $\mathbb{R}^n$ - области с липшицевыми границами тогда $\Omega$ и $\tilde{\Omega}$ эквивалентны если $\exists F: \tilde{\Omega} \rightarrow \Omega$, что $F\left(\tilde{\tau}\right) = B \tilde{\tau} + b$, где $B = \left(B^i_j\right)^n_n, b \in \mathbb{R}^n$.
+\end{definition}
+
+\begin{definition}[Полунорма в пространстве Соболева $H^K \left(\Omega\right)$]
+	Вводится полунорма:
+	
+	$$
+	\left[x\right]_{H^K\left(\Omega\right)} = \sum_{\left|\alpha\right| = K} \int\limits_{\Omega} \left(\partial^\alpha x \left(\tau\right)\right)^2 d\tau
+	$$
+\end{definition}
+
+\begin{theorem}[Оценка полунормы для аффиноэквивалентных областей]
+	Пусть $\Omega, \tilde{\Omega}$ - аффино - эквивалентные области в $\mathbb{R}^n$ с липшицевыми границами. Тогда $\forall \upsilon \in H^K \left(\Omega\right)$, $\tilde{\upsilon} = \upsilon \cdot F^{-1}$, 
+	
+	$$
+	\left[\tilde{\upsilon}\right]_{H^K\left(\tilde{\Omega}\right)} \leq C_1 \left(u, K\right) \|B\|^K \left|\det B\right|^{\frac{1}{2}}
+	$$
+	
+	$$
+	\forall \tilde{\upsilon} \in H^K \left(\tilde{\Omega}\right), \left[\upsilon\right]_{H^K\left(\Omega\right)} \leq C_2 \left(n, K\right) \| B^{-1} \| \left|\det B\right|^{\frac{1}{2}}
+	$$
+	
+	Эти неравенство будут использоваться для ддоказательства сходимости МКЭ. 
+	
+	$$
+	\|B\| = \sup_{\|\xi\| \leq 1} \|B_{\xi}\|, \|\xi\|^2 = \sum_{i=1}^{n} \xi^2_i
+	$$
+\end{theorem}
+
+\begin{proof}
+Пусть $\upsilon \in C^\infty_0 \left(\Omega\right)$, $\tilde{\upsilon} \in C^\infty_0 \left(\tilde{\Omega}\right)$. Если имеется $\alpha = \left(\alpha_1...\alpha_k\right)$, тогда 
+
+$$
+\partial^\alpha \upsilon = \left(\underbrace{\nabla \otimes ... \nabla }_{\left|\alpha\right| = K}\right) \upsilon \cdot ... \cdot \left(\vec{e}_{\alpha_1} \otimes .. \vec{e}_{\alpha_n}\right)
+$$
+
+Напомним, что $\nabla \upsilon = \vec{e}^i \frac{\partial \upsilon}{\partial \tau_i}$ и $\tilde{\nabla} \tilde{\upsilon} = \vec{e}^i \frac{\partial \tilde{\upsilon}}{\partial \tilde{\tau_i}}$.
+
+$$
+\tilde{\upsilon} \left(\tilde{\tau}\right) = \upsilon \left(B \tilde{\tau} + b\right)
+$$
+
+$$
+\frac{\partial \tilde{\upsilon}}{\partial \tilde{\tau_i}} = B^j_i \frac{\partial \upsilon}{\partial \tau_j} \Rightarrow \tilde{\nabla} \tilde{\upsilon} = B^T \nabla \upsilon
+$$
+
+$$
+\tilde{\nabla} \tilde{\upsilon} \vec{e_i} = B^T \nabla \upsilon \vec{e_i} = \left(B^T \cdot \nabla \upsilon\right)^T \vec{e_i} = \left(\nabla \upsilon\right)^T B \vec{e_i} = \nabla \upsilon \left(B \vec{e_i}\right)
+$$
+
+$$
+\tilde{\nabla} \otimes \tilde{\nabla} \cdot \cdot \left(\vec{e_i} \otimes \vec{e_j}\right) = \left(\vec{e_j} \cdot \tilde{\nabla}\right) \left(\tilde{\nabla} \tilde{\upsilon} \cdot \vec{e_i}\right) = \left(\vec{e_j} \cdot \tilde{\nabla}\right) \left(\nabla \upsilon \cdot B \vec{e_i}\right) = \left[\nabla \left(\nabla \upsilon - B \vec{e_i}\right)\right] \cdot \left(B \vec{e_j}\right) = \left(\nabla \otimes \nabla \upsilon\right) \cdot \cdot \left(B \vec{e_i}\right) \otimes \left(B\vec{e_j}\right)
+$$
+
+$$
+\left(\tilde{\nabla} \otimes ... \tilde{\nabla} \tilde{\upsilon}\right) \cdot ... \cdot \left(\vec{e} \alpha_1 \otimes ... \otimes \vec{e} \alpha_n \right) = \left(\nabla \otimes ... \nabla \upsilon\right) \cdot ... \cdot \left(B\vec{e_{\alpha_1}} \otimes ... B \vec{e_{\alpha_n}}\right)
+$$
+
+$$
+\forall \vec{a_i} \in \mathbb{R}^n, i = 1...n
+$$
+
+$$
+\left(\tilde{\nabla} \otimes ... \tilde{\nabla} \tilde{\upsilon}\right) \cdot ... \cdot \left(\vec{a_1} \otimes ... \otimes \vec{a_n}\right) = \left(\nabla \otimes ... \nabla \upsilon\right) \cdot ... \cdot \left(B\vec{a_1} \otimes ... \otimes B\vec{a_n}\right)
+$$
+
+Тогда 
+
+$$
+\left[\tilde{\upsilon}\right]_{H^K\left(\tilde{\upsilon}\right)} = \sum_{\left|\alpha\right| = K} \int\limits_{\tilde{\Omega}} \left(\partial^\alpha \tilde{\upsilon}\right)^2 d\tilde{\tau} = \sum_{\left|\alpha\right| = K} \int\limits_{\tilde{\Omega}} \left[\left(\tilde{\nabla} \otimes ... \tilde{\nabla} \tilde{\upsilon}\right) \cdot ... \cdot \left(\vec{e_{\alpha_1}} \otimes ... \vec{e_{\alpha_n}}\right)\right] d\tau \leq \tau \left(n,K\right) \int\limits_{\Omega} \|\tilde{\nabla} \otimes ... \tilde{\nabla} \tilde{\upsilon}\|^2 d\tilde{\tau}
+$$
+
+$$
+\|\vec{a_1} \otimes ... \otimes \vec{a_n}\| = \sup_{\|\xi_i\| \leq 1} \left|\left(\vec{a_1} \otimes ... \vec{a_n}\right) \cdot ... \cdot \left(\vec{\xi_1} ... \vec{\xi_n}\right)\right| = \sup_{\|\xi_i\| \neq 0} \frac{\left|\left(\vec{a_1} \otimes ... \vec{a_n}\right) ... \left(\vec{\xi_1} \otimes ... \vec{\xi_n}\right)\right|}{\|\vec{\xi_1}\| ... \|\vec{\xi_n}\|}
+$$
+
+$$
+\|\tilde{\nabla} \otimes ... \tilde{\nabla} \tilde{\upsilon}\| = \sup_{\|\xi_i\| \neq 0} \frac{\left|\left(\tilde{\nabla} \otimes ... \tilde{\nabla} \tilde{\upsilon}\right) ... \left(\vec{\xi_1} \otimes ... \otimes \vec{\xi_n}\right)\right|}{\|\vec{\xi_1}\| \cdot ... \cdot \|\vec{\xi_n}\|} = \sup_{\|\xi_i\| \neq 0} \frac{\left|\left(\nabla \otimes ... \otimes \nabla \upsilon\right) ... \left(B\vec{\xi_1} \otimes ... \otimes B \vec{\xi_n}\right)\right|}{\|\vec{\xi_1}\| \cdot ... \cdot \|\vec{\xi_n}\|} = 
+$$
+
+$$
+= \sup_{\|\eta_i\| \neq 0}\frac{\left|\left(\nabla \otimes ... \otimes \nabla \upsilon\right) \cdot ... \cdot \left(\vec{\eta_1} \otimes ... \otimes \vec{\eta_n}\right)\right|}{\|B^{-1}\eta_1\| \cdot ... \cdot \|B^{-1} \eta_n \|}
+$$
+
+$$
+\|Bz\| \leq \|B\| \cdot \|z\|, \forall z \in \mathbb{R}^n
+$$
+
+Пусть $z = B^{-1} x, x\in \mathbb{R}^n$. Тогда
+
+$$
+\|x\| \leq \|B\| \cdot \|B^{-1} x\|
+$$
+
+$$
+\frac{1}{\|B^{-1} x\|} \leq \frac{\|B\|}{\|x\|}, \forall x \in \mathbb{R}^n
+$$
+
+$$
+\|\tilde{\nabla} \otimes ... \otimes \tilde{\nabla} \tilde{\upsilon} \| = \sup_{\|\vec{\xi_i}\| \neq 0} \frac{\left|\left(\tilde{\nabla} \otimes ... \otimes \tilde{\nabla} \tilde{\upsilon} \right) \cdot ... \cdot\left(\vec{\xi_1} \otimes ... \otimes \vec{\xi_n}\right)\right|}{\|\vec{\xi_i}\| ... \|\vec{\xi_n}\|} = \sup_{\|\xi_i\| \neq 0} \frac{\left|\left(\nabla \otimes ... \otimes \nabla \upsilon\right) ... \left(B\vec{\xi_1} \otimes ... \otimes B \vec{\xi_n}\right)\right|}{\|\vec{\xi_1}\| \cdot ... \cdot \|\vec{\xi_n}\|} = 
+$$
+
+$$
+= \sup_{\|\eta_i\| \neq 0}\frac{\left|\left(\nabla \otimes ... \otimes \nabla \upsilon\right) \cdot ... \cdot \left(\vec{\eta_1} \otimes ... \otimes \vec{\eta_n}\right)\right|}{\|B^{-1}\eta_1\| \cdot ... \cdot \|B^{-1} \eta_n \|} \leq \|B\|^n \sup_{\|\eta_i\| \neq 0} \frac{\left|\left(\nabla \otimes ... \otimes \upsilon\right) ... \left(\vec{\eta_1} \otimes ... \otimes \vec{\eta_n}\right)\right|}{\|\vec{\eta_1}\| ... \|\vec{\eta_n}\|} = 
+$$
+
+$$
+= \|B\|^n \|\nabla \otimes ... \otimes \nabla \upsilon\|
+$$
+
+$$
+\|\nabla \otimes ... \otimes \nabla \upsilon\| \leq \sum_{\left|\alpha\right| = K} \sup_{\|\xi_i\| \leq 1} \left[\left|\xi_1^{\alpha_1}\right|...\left|\xi_n^{\alpha_n}\right|\left[\left(\nabla \otimes ... \otimes \nabla \upsilon\right)... \left(\vec{e_{\alpha_1}} ... \vec{e_{\alpha_n}}\right)\right]\right] \leq \sum_{\left|\alpha\right| = K} \sup_{\|\xi_i\| \leq 1} \left[\left|\xi_1^{\alpha_1}\right|... \left|\xi_n^{\alpha_n}\right|\left|\partial^\alpha \upsilon\right|\right]\leq
+$$
+
+$$
+\leq \tilde{C}_2 \left(K,n\right) \max_{\left|\alpha\right| = K} \left|\partial^\alpha \vec{\upsilon}\right|
+$$
+
+$$
+\left[\tilde{\upsilon}\right]^2_{H^K\left(\Omega\right)} \leq \tilde{C}_1 \tilde{C}_2 \left(\int\limits_{\Omega} \left(\max_{\left|\alpha\right| = K} \left|\partial^\alpha \upsilon\right|\right)^2 d\tau\right)\|B\|^{2n} \leq C_1 \|B\|^{2n} \cdot\left|\det B\right|\left[\upsilon\right]^2_{H^K\left(\Omega\right)}
+$$
+
+Второе неравенство доказывается аналогично
+\end{proof}
+		
+Пусть $h = diam \left(\Omega\right), \tilde{h} = diam \left(\tilde{\Omega}\right), \rho = \sup_{u \subset \Omega} diam \left(u\right), \tilde{\rho} = \sup_{u \subset \tilde{\Omega}} diam \left(u\right)$
+
+\begin{theorem}[Об оценке норм матриц при аффинном отображении областей]
+Пусть $\Omega, \tilde{\Omega}$ - аффино-эквивалентные области в $\mathbb{R}^n$, тогда 
+
+$$
+\|B\| \leq \frac{h}{\tilde{\rho}}, \|B^{-1}\| \leq \frac{\tilde{h}}{\rho}
+$$
+\end{theorem}
+
+\begin{proof}
+Оценим норму матрицы $B$:
+
+$$
+\|B\| = \sup_{\|\xi\| \leq 1} \|B_{\xi}\| = \frac{1}{\tilde{\rho}} \sup_{\|\xi\| \leq \tilde{\rho}} \|B_\xi\|
+$$
+
+$$
+\exists z,y \in \tilde{\Omega}
+$$
+
+$$
+F\left(\tilde{z}\right) - F\left(\tilde{y}\right) = B_\xi
+$$
+
+Так как $F\left(\tilde{z}\right)$, $F\left(\tilde{y}\right) \in \Omega$, то 
+
+$$
+\|B_\xi\| = \|F\left(\tilde{z}\right) - F\left(\tilde{y}\right)\| = \rho \left(F\left(\tilde{z}\right)\right) \leq h \Rightarrow \|B\|\leq\frac{h}{\tilde{\rho}}
+$$
+
+Второе неравенство доказывается аналогично.
+\end{proof}
+
 \end{document}
