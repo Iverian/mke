@@ -1,7 +1,139 @@
 \documentclass[__main__.tex]{subfiles}
 
+\newcommand{\norm}[1]{\left\Vert{#1}\right\Vert}
+
+
 \begin{document}
 
 \section{Краевая задача для стационарного уравнения теплопроводности с граничными условиями первого и второго рода. Классическая постановка задачи. Вывод вариационного уравнения. Определение слабого решения задачи. Достаточное условие существования классического решения задачи. Теорема существования и единственности слабого решения задачи.}
+
+Пусть \(\Omega\subset\mathbb{R}^3\), \(Ox_i\) -- декартова СК с ортами \(\symbf{e}_i\), \(i\in\overline{1\dots3}\) и \(f=\mathring{p}q_m{\in}C(\Omega)\). Представим границу как \(\partial{\Omega}=\Sigma_{q}\cup\Sigma_{\theta}\), где \(\Sigma_{q}\cap\Sigma_{\theta}=\phi\).
+
+\(\tilde{\lambda}=\lambda_{ij}\symbf{e}_i\otimes\symbf{e}_j\), \(\lambda_{ij}{\in}C(\Omega)\).
+
+Требуется найти температуру \(\theta\in{C^2(\Omega)}\cap{C(\bar\Omega)}\) такую, что:
+
+\begin{gather*}
+	\left\{
+	\begin{gathered}
+		\nabla\symbf{q}=\mathring{p}q_m, \quad \forall\tau\in\Omega\hfill\\
+		\symbf{q}=-\tilde{\lambda}\cdot\nabla\theta\hfill\\
+		\left.\symbf{q}\cdot\symbf{n}\right|_{\Sigma_q}=q_e\hfill\\
+		\left.\theta\right|_{\Sigma_{\theta}}=\theta_{e}\hfill\\
+	\end{gathered}
+	\right.{.}
+\end{gather*}
+
+Рассмотрим \(v\in{C^1(\bar\Omega)}\), где \(\left.v\right|_{\Sigma_\theta}=0\):
+
+\begin{flalign*}
+	&
+	\int\limits_{\Omega}v\nabla\cdot\symbf{q}{d\tau}
+	=
+	\int\limits_{\Omega}vf{d\tau},\\
+	&
+	\nabla(v\symbf{q})
+	=
+	v\nabla\symbf{q}
+	+
+	\symbf{q}\nabla{v}\Rightarrow v\nabla\symbf{q}
+	=
+	\nabla(v\cdot\symbf{q})-\symbf{q}\nabla{v},\\
+	&
+	\int\limits_{\Omega}v\nabla\symbf{q}{d\tau}
+	=
+	\int\limits_{\Omega}\nabla(v\cdot\symbf{q}){d\tau}
+	-
+	\int\limits_{\Omega}\symbf{q}\cdot\nabla{v}{d\tau}
+	=
+	\int\limits_{\Sigma_q}vq_e
+	+
+	\int\limits_{\Omega}\nabla\theta\cdot\tilde\lambda{d\tau},\\
+	&
+	\underbrace{\int\limits_{\Omega}\nabla\theta\cdot\tilde\lambda{d\tau}}_{B(\theta,v)}
+	=
+	-\underbrace{\int\limits_{\Sigma_q}vq_e{d\tau}+\int\limits_{\Omega}vf{d\tau}}_{f(v)},
+\end{flalign*}
+
+получим вариационное уравнение $B(\theta,v)=-f(v)$.
+
+Пусть \(f{\in}L_2(\Omega)\), \(q_e{\in}L_2(\Sigma_q)\), \(\theta_e{\in}L_2(\Sigma_\theta)\) и \(\forall\tau\in\Omega\colon\left|\lambda_{ij}(\tau)\right|{\le}m\), где \(m=\mathrm{const}\). Тогда $\lambda_{ij}$ -- интегрируема по Лебегу и \(\forall\symbf{x}\in\mathbb{R}^3\colon\symbf{x}\cdot\tilde{\lambda}\cdot\symbf{x}{\ge}m\symbf{x}\cdot\symbf{x}\forall\tau\in\Omega\).
+
+\(V=\left\{v{\in}H^1(\Omega)\colon{TR}_{\Sigma_\theta}{\circ}v{\le}0\right\}\).
+
+Пусть \(\omega{\in}H^1(\Omega)\) -- такая функция, что \({TR}_{\Sigma_\theta}\circ\omega=\theta_{e}\)
+
+\begin{definition}
+	Слабым решением стационарной краевой задачи теплопроводности будем называть такой элемент \(\theta{\in}H^1(\Omega)\), что \({\forall}v{\in}V{\colon}B(\theta,v)=f(v)\) и \(\theta-\omega{\in}V\).
+\end{definition}
+
+\begin{theorem}
+	Пусть \(\Omega\) -- область с липшицевой границей и выполняются уравнения на входные данные задачи, тогда слабое решение \(\theta{\in}H^1(\Omega)\) существует и единственно, независимо от выбора \(\omega\).
+\end{theorem}
+\begin{proof}
+	Пусть \(v{\in}V\), тогда:
+	\begin{gather*}
+		B(u,v)=\int\limits_{\Omega}\nabla{u}\cdot\tilde{\lambda}\nabla{v}{d\tau}{\ge}m\sum_{i=1}^{3}\left(\frac{\partial{v}}{\partial{x_i}}\right)^2{d\tau}{\ge}\left.{C\norm{v}^2}\right|_{H^1(\Omega)},
+	\end{gather*}
+	следовательно, \(B\) положительно определена в $V$. Пусть $u,v{\in}H^1(\Omega)$:
+	\begin{flalign*}
+		B(u,v)^2
+		&=
+		\left({\int\limits_{\Omega}\nabla{u}\tilde{\lambda}\cdot\nabla{v}{d\tau}}\right)^2
+		=
+		\left(\nabla{u},\tilde{\lambda}\right)^2_{[H^1(\Omega)]^3}
+		\le\\
+		&\le
+		\norm{\nabla{u}}^2_{[H^1(\Omega)]^3}
+		\cdot
+		\norm{\tilde{\Lambda}\nabla{v}}^2_{[H^1(\Omega)]^3},
+		\\
+		\norm{\nabla{u}}^2_{[H^1(\Omega)]^3}
+		&=
+		\sum_{i=1}^{3}\int\limits_{\Omega}\left(\frac{\partial{u}}{\partial{x_i}}\right)^2{d\tau}
+		\le
+		\norm{u}_{H^1(\Omega)}
+		\\
+		\bar{q}
+		&=
+		\tilde{\lambda}\cdot\nabla{v},
+		\\
+		\norm{q}^2_{[H^1(\Omega)]^3}
+		&=
+		\sum_{i=1}^{3}\int\limits_{\Omega}q^2_i{d\tau}
+		\le
+		M\sum_{i=1}^{3}\int\limits_{\Omega}\left(\sum_{j=1}^{3}\frac{\partial{v}}{\partial{x_i}}\right)^2{d\tau}
+		\le\\
+		&\le
+		{\xi}M\sum_{i,j=1}^{3}\int\limits_{\Omega}\left(\frac{\partial{v}}{\partial{x_j}}\right)^2{d\tau}
+		\le
+		\tilde{M}\sum_{j=1}^{3}\int\limits_{\Omega}\left(\frac{\partial{v}}{\partial{x_i}}\right)^2{d\tau}
+		\le
+		{\tilde{M}\norm{v}^2}_{H^1(\Omega)},
+	\end{flalign*}
+	т.е. \(B(u,v)^2{\le}\tilde{M}\norm{u}_{H^1(\Omega)}\norm{v}^2_{H^1(\Omega)}\) \(\Rightarrow\) \(B(u,v)\) -- непрерывна в \(H^1(\Omega){\times}H^1(\Omega)\) и положительна определена в $V{\times}V$, тогда по лемме Лакса-Мильграмма \(\exists{!}z{\in}V\), что \({\forall}v{\in}V{\colon}B(z,v)=f(v)-B(\omega,v),B(z+\omega,v)=f(v)\).
+
+	Заметив, что \(u=z+w{\in}H^1(\Omega)\), получим \(u-\omega{\in}V\):
+	\begin{gather*}
+		{\forall}v{\in}V{\colon}B(u,v)=f(v)
+	\end{gather*}
+
+	Осталось показать единственность решения: пусть \({\exists}u_1,u_2{\in}H^1(\Omega){\colon}B(u_1,v)=f(v){\forall}v{\in}V{\colon}u_1-\omega_1{\in}V\text{ и }B(u_2,v)=f(v){\forall}v{\in}V{\colon}u_2-\omega_2{\in}V\). Тогда:
+	\begin{gather*}
+		u_1-u_2
+		=
+		\left[(u_1-\omega_1)-(u_2-\omega_2)+(\omega_1-\omega_2)\right]{\in}V
+		\\
+		0
+		=
+		B(u_2,v)-B(u_1,v)
+		\\
+		{\forall}v{\in}V{\colon}B(u_2-u_1,v)=0 \quad\text{пусть }v=u_2-u_1
+		\\
+		0
+		=
+		B(u_2-u_1,u_2-u_1){\ge}m\norm{u_2-u_1}^2_{H^1(\Omega)}{\Rightarrow}u_1=u_2
+	\end{gather*}
+\end{proof}
 
 \end{document}
