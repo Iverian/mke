@@ -4,4 +4,34 @@
 
 \section{Однородная краевая задача для обыкновенного дифференциального уравнения второго порядка. Классическая постановка задачи. Вывод вариационного уравнения. Переход от вариационной формулировки к классической постановке. Метод Галеркина для данной задачи. Пример базисных функций для метода конечных элементов. Теорема об оценке точности МКЭ-решения задачи.}
 
+Рассмотрим решение дифференциального уравнения методом конечных элементов:
+
+\begin{gather*}
+	C_0^n[a, b]=\left\{x \in C^n[a,b]: \ x(a)=x(b)=0\right\}
+\end{gather*}
+
+Пусть $p \in C^1[a, b]$, $q, f \in C[a,b]$, $p(\tau) \geq c_0$, $q(\tau)\geq 0$ $\forall \tau \in [a,b]$, $c_0=const$. 
+
+\begin{gather*}
+	\begin{cases}
+		Lu=-\frac{d}{d\tau}\left(p\frac{du}{d\tau}\right)+qu=f \hfill \\
+		u(a)=u(b)=0 \hfill \\	
+	\end{cases} 
+\end{gather*}
+
+где $u \in C^2[a, b]$ 
+
+Берем некую произвольную функцию $v \in C^1_0[a,b]$. Умножаем на уравнение и интегрируем по отрезку:
+
+\begin{gather*}
+	\int_{a}^{b}vLud\tau =\int_{a}^{b}vfd\tau	
+\end{gather*}
+Рассмотрим левую часть:
+\begin{gather*}
+	\int_{a}^{b}vLud\tau = -\int_{a}^{b}v\left[\frac{d}{d\tau}\left(p\frac{du}{d\tau}\right)+qu\right]d\tau = \underbrace{\int_a^b(pu'v'+quv)d\tau}_{B(u,v)}= \underbrace{\int_a^bvfd\tau}_{f(v)}
+\end{gather*}	
+Получаем вариационное уравнение:
+\begin{gather*}
+	B(u,v)=f(v), \qquad \forall v \in C_0^1[a,b]	
+\end{gather*}
 \end{document}
