@@ -4,4 +4,108 @@
 
 \section{Однородная краевая задача для обыкновенного дифференциального уравнения второго порядка. Классическая постановка задачи. Вывод вариационного уравнения. Переход от вариационной формулировки к классической постановке. Метод Галеркина для данной задачи. Пример базисных функций для метода конечных элементов. Теорема об оценке точности МКЭ-решения задачи.}
 
+Рассмотрим решение дифференциального уравнения методом конечных элементов:
+
+\begin{gather*}
+	C_0^n[a, b]=\left\{x \in C^n[a,b]: \ x(a)=x(b)=0\right\}
+\end{gather*}
+
+Пусть $p \in C^1[a, b]$, $q, f \in C[a,b]$, $p(\tau) \geq c_0$, $q(\tau)\geq 0$ $\forall \tau \in [a,b]$, $c_0=const$. 
+
+\begin{gather*}
+	\begin{cases}
+		Lu=-\frac{d}{d\tau}\left(p\frac{du}{d\tau}\right)+qu=f \hfill \\
+		u(a)=u(b)=0 \hfill \\	
+	\end{cases} 
+\end{gather*}
+
+где $u \in C^2[a, b]$ 
+
+Берем некую произвольную функцию $v \in C^1_0[a,b]$. Умножаем на уравнение и интегрируем по отрезку:
+
+\begin{gather*}
+	\int_{a}^{b}vLud\tau =\int_{a}^{b}vfd\tau	
+\end{gather*}
+Рассмотрим левую часть:
+\begin{gather*}
+	\int_{a}^{b}vLud\tau = -\int_{a}^{b}v\left[\frac{d}{d\tau}\left(p\frac{du}{d\tau}\right)+qu\right]d\tau = \underbrace{\int_a^b(pu'v'+quv)d\tau}_{B(u,v)}= \underbrace{\int_a^bvfd\tau}_{f(v)}
+\end{gather*}	
+Получаем вариационное уравнение:
+\begin{gather*}
+	B(u,v)=f(v), \qquad \forall v \in C_0^1[a,b]	
+\end{gather*}
+Ну и если захотим вернуться обратно к интегральчику, то вот:
+\begin{gather*}
+	\int_a^b \left(Lu-f\right)v d\tau =0 \qquad \forall v \in C_0^1[a,b]	
+\end{gather*}
+Идем дальше метод Галеркина:
+\begin{gather*}
+	u_n(\tau)=\sum_{i=1}^{n-1}c_ih_i(\tau) \\
+	B(u_n, v)=\sum_{i=1}^{n-1}c_iB(h_i, v)=f(v)
+\end{gather*}
+Чтобы получить систему для $c_i$ положим $v=h_j$
+\begin{gather*}
+	\sum_{i=1}^{n-1}c_i\underbrace{B(h_i, h_j)}_{K^i_j}=\underbrace{f(h_j)}_{f}
+\end{gather*}
+И получаем матричный вид:
+\begin{gather*}
+	KC=f
+\end{gather*}
+
+здесь должно быть что-то о каких-то там базисах, но я не нашла, соррян.\\
+
+\begin{theorem}
+	(Лемма) Пусть $u \in C_0[a,b]$, $u'$ -- кусочно непрерывна.\\
+	Тогда:
+	\begin{gather*}
+		||u||^2_c\leqslant (b-a)\int_a^b (u'(\eta))^2d\eta
+	\end{gather*}
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		u^2(\tau)=\left(\int_a^\tau u'(\eta)d\eta\right)^2 
+	\end{gather*}
+	так как 
+	\begin{gather*}
+		\left(\int_a^b uvd\tau\right)^2 \leqslant \int_a^b u^2 d\tau \int_a^b v^2 d\tau = 
+	\end{gather*}
+	получаем:
+	\begin{gather*}
+		\left(\int_a^\tau u'(\eta)d\eta\right)^2 \leqslant 	\left(\int_a^\tau 1^2 d\eta\right)\left(\int_a^\tau (u'(\eta))^2d\eta\right)=(b-a)\int_a^b (u'(\eta))^2d\eta
+	\end{gather*}
+\end{proof}
+
+\begin{theorem}
+	(об оценке точности МКЭ-решения задачи) Пусть $u \in C_0^2[a, b]$ -- решение задачи:
+	\begin{gather*}
+		\begin{cases}
+			Lu=f \hfill \\
+			u(a)=u(b)=0
+		\end{cases}
+	\end{gather*}
+	$u_n$ -- МКЭ-решение. Тогда:
+	\begin{gather*}
+		||u-u_n||_c \leqslant ch^2||u''||_c
+	\end{gather*}
+	где $c=const>0$, которая зависит от коэффициентов уравнения ($p,q,a,b$).
+\end{theorem}
+\begin{proof}
+	По определению МКЭ-решения:
+	\begin{gather*}
+		B(u_n, v_n)=f(v_n) \qquad \forall v_n \in X_n = span\{h_1, ... , h_{n-1}\}\\
+		B(u,v_n) = \int_a^b (pu'v_n'+puv)d\tau = \int_a^b v_nhud\tau =\in_a^bv_n f d\tau = f(v_n)\\
+		u_I =\Pi_h u \\
+		B(u_n-u_I, u_n-u_I)=f(u_n-u_I)-B(u_I, u_n-u_I)=B(u-u_I, u_n-u_I)=\\
+		=\int_a^bp(u-u_I)'(u_n-u_I)' d\tau + \int_a^b q(u-u_I)(u_n-u_I)d\tau\\
+		w=u_n-u_I\\
+		\int_a^b p(u-u_I)'w'd\tau = - \sum_{i=0}^{n-1}\int_{\tau_i}^{\tau_{i-1}} p'(u-u_I)w'd\tau = -\int_a^b p'(u-u_I)w'd\tau \\
+		\left(\int_a^b p'(u-u_I)w'd\tau \right)^2 \leqslant (b-a)||u-u_I||^2_c||p'||_c\\
+		\left(\int_a^b q(u-u_I)wd\tau \right)^2 \leqslant||u-u_I||^2_c||q||^2_c||w||^2_c(b-a)^2 \leqslant (b-a)^3 ||u-u_I||^2_c ||q||^2_c \int_a^b (w')^2d\tau \\
+		B(u_n-u_I, u_n-u_I)^2 \leqslant c'^{2}||u-u_I||^2_c\int_a^b (w')^2d\tau\\
+		B(u_n-u_I, u_n-u_I) = \int_a^b(p ((\underbrace{u_n-u_I}_w)')^2+q(u_n-u_I)^2)d\tau \geqslant c_0\int_a^b(w')^2d\tau\\
+		||u_n-u_I||_c\leqslant \sqrt{\int (w')^2 d\tau} \leqslant c''||u-u_I||_c\\
+		||u-u_n||_c=||u-u_i+u_I-u_n||_c \leqslant ||u-u_I||_c+||u_I-u_n||\leqslant (1+c'')||u-u_I||_c \leqslant ch^2||u''||_c
+	\end{gather*}
+
+\end{proof}
 \end{document}
