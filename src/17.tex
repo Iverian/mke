@@ -4,4 +4,75 @@
 
 \section{Глобальный номер степени свободы. Алгоритм сборки глобальной СЛАУ. Особенности учета граничных условий первого и второго рода.}
 
+\begin{definition}[Глобальный номер степени свободы]
+	Пусть i - локальный номер степени свободы в конечном элементе $\left(K, P_K, \Sigma_K\right)$ тогда глобальный номер степенисвободы будем обозначать $g\left(i\right)$, то есть если $f_i \in \Sigma_K \Rightarrow F_{g\left(i\right)} = f_i \in \Sigma_h$
+\end{definition}
+
+Вид глобальной СЛАУ:
+
+\begin{equation*}
+\begin{cases}
+\sum_{K \in D_n} e^T_{l\left(K,m\right)}\left[G_K t_K \left(u_h\right) - f_K\right] = 0, \forall n: a_n \in \Sigma\\
+F_n\left(u_h\right) = F_n \left(\omega_h\right), \forall n: a_n \in \Sigma
+\end{cases}
+\end{equation*}
+
+где $\Sigma$ - часть границы с граничными условиями первого рода. В случае теплопроводности $\Sigma = \Sigma_0$ или в случае линейной теории упругости $\Sigma = \Sigma_n$.
+
+$\Sigma_K = \{ f_i, i=1...N_K \}, \Sigma_h = \{F_i, i = 1... M_h\}$.
+
+$$
+G_K = \left(
+\begin{matrix}
+G^K_{11} && ... && G^K_{1N_K} \\
+... && ... && ... \\
+G^K_{N_K} && ... && G^K_{N_K N_K}
+\end{matrix}
+\right)
+$$
+
+$$
+f_K = \left(
+\begin{matrix}
+f^K_1 \\
+... \\
+f^K_{N_K}
+\end{matrix}
+\right)
+$$
+
+$$
+e^T_{l\left(K,m\right)} \left[G_K T_K \left(u_h\right) - f_K\right] = \left(G^K_{l\left(K,n\right) 1} ... G^K_{l\left(K,n\right) N_K}\right) T_K \left(u_h\right) - f^K_{l\left(K,n\right)}
+$$
+
+Таким образом алгоритм сборки глобальной СЛАУ имеет вид:
+
+\begin{enumerate}
+	\item Инициализация: $G_{ij} = 0, f_i = 0, i,j = \overline{1,M_h}$
+	
+	\item Учитываем условия граничные (первого рода)
+	
+	\begin{gather*}
+	\begin{flushleft}
+	for (i : a_i \in \Sigma) \\
+	\quad f_i = F_i \left(\omega_h\right) \\
+	\quad G_{ij} = 1
+	\end{flushleft}
+	\end{gather*}
+	
+	\item Сборка глобальной СЛАУ (основная часть)
+	
+	\begin{gather*}
+	\begin{flushleft}
+	for (K \in T_n) \\
+	\quad for (i=1...N_K) \\
+	\quad \quad	if (a_{g(i)} \notin \Sigma) \\
+	\quad \quad \quad for (j = 1 ...N_K) \\
+	\quad \quad \quad \quad	if (a_{g(j)}\notin \Sigma)\\
+	\quad \quad \quad \quad \quad G_{g(i) g(j)} += G^K_{ij} \\
+	\quad \quad \quad \quad else \\
+	\quad \quad \quad \quad \quad f_{g(i)} -= G^K_{ij} f_{g(j)}
+	\end{flushleft}
+	\end{gather*}
+\end{enumerate}
 \end{document}
