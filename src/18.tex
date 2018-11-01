@@ -4,4 +4,64 @@
 
 \section{Ассоциированный конечный элемент. Лемма о корректности определения. Аффинно-эквивалентные, изопараметрически-эквивалентные, криволинейные конечные элементы. Лемма о виде функций формы для ассоциированного конечного элементов. Примеры.}
 
+\begin{definition}[Диффеоморфизм]
+	Пусть $U,V$ - области в $\mathbb{R}^n$, тогда отображение $F:U\rightarrow V$ наз-ся диффеоморфизмом порядка $m$, если
+	\begin{itemize}
+		\item $F$ - биекция
+		\item $\partial^\alpha (F_i)\in C(U),\;i=1\dots n,\;\vert\alpha\vert\le m$
+		\item $\partial^\alpha (F^{-1})\in C(V),\;i=1\dots n,\;\vert\alpha\vert\le m$
+	\end{itemize}
+\end{definition}
+\begin{definition}[Ассоциированный КЭ]
+	Пусть $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$ - стандартный КЭ, причём в $\Sigma_k$ участвуют производные порядка меньше, чем $\tilde{S}_k$. Тогда КЭ $\left(K,P_k,\Sigma_k\right)$ - ассоциированный с исходным $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$, если существует диффеоморфизм $F:\tilde{K}\rightarrow K$ порядка $S_k$:
+	\begin{itemize}
+		\item $F(\tilde{K})=K$
+		\item $P_k=\{p:\;p(\tau)=\tilde{p}(F^{-1}(\tau)),\tau\in K\}$
+		\item $\Sigma_k=\{f_i:\;f_i(p)=\tilde{f}_i(\tilde{p}),\tilde{p}(\tilde{\tau})=p(F(\tilde{\tau})),\tilde{\tau}\in\tilde{K} \}$, причём $P_k\subset C^{S_k}(K)$
+	\end{itemize}
+\end{definition}
+\begin{theorem}[Лемма о корректности]
+	Определение ассоциированного КЭ - корректно
+\end{theorem}
+\begin{proof}
+	Рассмотрим линейный оператор $A:\tilde{P}_{\tilde{K}}\rightarrow P_k$: 
+	$\left(Ap\right)(\tau)=\tilde{p}\left(F^{-1}(\tau)\right)\quad\forall\tau\in K.$\\
+	Т.к. $F$ - диффеоморфизм, то $\exists c=const\ge 0:\vert\det J\vert\ge c;\quad J=(J^i_j)^n_n,\;J^i_j=\frac{\partial F_i}{\partial\tau_j}.$\\
+	$\Vert A\tilde{p}\Vert_{L_1(K)}=\int_K p(\tau)d\tau=\int_{\tilde{K}}\vert\tilde{p}(\tilde{\tau})\vert\vert\det J\vert d\tilde{\tau}\ge C\int_{\tilde{K}}\vert\tilde{p}(\tilde{\tau})\vert d\tilde{\tau}=C\Vert\tilde{p}\Vert_{L_1(\tilde{K})}$.\\
+	Пусть $\tilde{p}_1\dots\tilde{p}_n$ - ЛНЕЗ функции из $\tilde{P}_{\tilde{K}}$. С помощью оператора $A$ поставим этим функциям в соответствие $p_1\dots p_n$ и рассмотрим линейную комбинацию:\\
+	\begin{gather*}
+		\Vert\alpha_1 p_1+\dots\alpha_n p_n\Vert_{L_1(K)}\ge C\Vert\alpha_1 \tilde{p}_1+\dots\alpha_n\tilde{p}_n\Vert_{L_1(K)}\Rightarrow\\
+		\alpha_1 p_1+\dots\alpha_n p_n=0\Leftrightarrow \alpha_1\dots\alpha_n=0\Rightarrow dimP_k=dim\hat{P}_{\hat{K}}.
+	\end{gather*}
+	Поскольку $\hat{P}_{\hat{K}}$ - КЭ, то размерность совпадает с числом степеней свободы, поэтому $dimP_k=dim\hat{P}_{\hat{K}}=\vert\hat{\Sigma}_{\hat{K}}\vert=\vert\Sigma_K\vert$, а это необходимое условие $P_k$-универсальности $\Sigma_K.$\\
+	Пусть $p\in P_K.$ Покажем, что $f_i(p)=0,i=1\dots N_K\Leftrightarrow p=0.$\\
+	$0=f_i(p)=\tilde{f}_i(\tilde{p}),\;\tilde{p}(\tilde{\tau})=p(F(\tilde{\tau}))\in\hat{P}_{\tilde{K}}\Rightarrow\tilde{p}=0\Rightarrow p=\tilde{p}(F^{-1})=0\Rightarrow \Sigma_K-P_k$ универсально, поэтому $(K,P_K,\Sigma_K)$ - КЭ
+\end{proof}
+
+Пусть $(K,P_K,\Sigma_K)$ - КЭ, ассоциированный с $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$, тогда:
+\begin{definition}[Аффинно эквивалентный КЭ]
+	КЭ наз-ся аффинно эквивалентным $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$, если $F(\tilde{\tau})=B\tilde{\tau}+b,\forall\tau\in\tilde{K},B=(B^i_j)^n_n,b\in\mathbb{R}^n$
+\end{definition}
+\begin{definition}[Изопараметрически эквивалентный КЭ]
+	КЭ наз-ся изопараметрически эквивалентным $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$, если $F=(F_1\dots F_n)^T$, где $F_i\in\tilde{P}_{\tilde{K}}$ и $(K,P_K,\Sigma_K)$ не является аффинно эквивалентным $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$.
+\end{definition}
+\begin{definition}[Криволинейный КЭ]
+	КЭ наз-ся криволинейным к $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$, если он не является ни аффинно, ни изопараметрически эквивалентным к $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$.
+\end{definition}
+\begin{theorem}[Лемма о виде функций формы для ассоциированного КЭ]
+	Пусть $(K,P_K,\Sigma_K)$ - КЭ, ассоциированный с $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$. Тогда функции формы $\phi_i,i=1\dots N_K$ имеет вид:
+	\begin{gather*}
+		\phi_i(\tau)=\tilde{\phi}_i(F^{-1}(\tau)),\tau\in K,i=1\dots N_K,
+	\end{gather*}
+	где $\tilde{\phi}_i$ - функции формы для $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$.
+\end{theorem}
+\begin{proof}
+	\begin{gather*}
+		f_j(\phi_i)=\tilde{f}_j(\phi_i)=\tilde{f}_j(\tilde{\phi}_i)=\delta_{ij},\;i,j=1\dots N_K
+	\end{gather*}
+\end{proof}
+Пример:\\
+$\tilde{K}=[0,1],\tilde{P}_{\tilde{K}}=P_1(\tilde{K}),\tilde{\Sigma}_{\tilde{K}}=\{f_i,\;i=1,2 \},\;f_1(p)=p(0),\;f_2(p)=p(1)$\\
+$K=[a,b],P_K=P1(K),\Sigma_K=\{f_i,\;i=1,2 \},\;f_1(p)=p(a),\;f_2(p)=p(b)$\\
+$F(\tilde{\tau})=(b-a)\tilde{\tau}+2,\tilde{\tau}\in[0,1]\Rightarrow(K,P_K,\Sigma_K)$ - аффинно эквивалентен $\left(\tilde{K},\tilde{P}_k,\tilde{\Sigma}_k\right)$.
 \end{document}
