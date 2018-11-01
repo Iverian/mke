@@ -8,6 +8,7 @@
 *.log
 *.synctex.gz
 build/
+*.out
 
 # Personal
 *_p.*

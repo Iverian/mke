@@ -2,6 +2,52 @@
 
 \begin{document}
 
-\section{Триангуляция стандартными конечными элементами. Лагранжевы конечные элементы. Эрмитовы конечные элементы. Примеры. Тео2 рема о P-унисольвентности множества степеней свободы и о свойствах конечно-элементного пространства $X_h$ симплексного конечного элемента.}
+\section{Триангуляция стандартными конечными элементами. Лагранжевы конечные элементы. Эрмитовы конечные элементы. Примеры. Теорема о P-унисольвентности множества степеней свободы и о свойствах конечно-элементного пространства $X_h$ симплексного конечного элемента.}
+
+\begin{definition}
+	Триангуляция \(T_h\) -- триангуляция на основе стандартных КЭ, если \({\forall}k{\in}T_h\) множество степеней свободы \(\Sigma_k\) имеет вид:
+	\begin{gather*}
+		\Sigma_k=\left\{f_i,i\in\overline{1{\dots}N_k}\right\},
+		f_i(P)=\left({\partial^{\alpha_i}p}\right)(a\indices{^k_i}),
+		|\alpha_i|{\le}S_k,
+		{\forall}p{\in}P_k
+	\end{gather*}
+	причем множество \(\left\{a\indices{^k_i},k{\in}T_h\right\}\) совпадает с множеством узлов \(N_h\) триангуляции \(T_h\).
+\end{definition}
+
+\begin{definition}
+	Пусть \(\left(K,P_k,\Sigma_k\right)\) -- стандартный конечный элемент, для которого \(S_k=0\), т.е. множество степеней свободы \(\Sigma_k\) имеет вид:
+	\begin{gather*}
+		\Sigma_k=\left\{f_i,i{\in}\overline{1{\dots}N_k}\right\},
+		f_i(P)=p(a\indices{^k_i}),
+		{\forall}p{\in}P_k,
+	\end{gather*}
+	тогда такой КЭ -- лагранжевый.
+\end{definition}
+
+\begin{definition}
+	Пусть \(\left(K,P_k,\Sigma_k\right)\) -- стандартный КЭ, для которого \(S_k{\ge}0\), тогда такой КЭ называется эрмитовым.
+\end{definition}
+
+\paragraph{Примеры КЭ:}
+
+\begin{itemize}
+	\item \(K=[a,b]\)\\
+	      \(P_K=P_1(K)=\left\{A\tau+B,\tau{\in}K,A,B\in\mathbb{R}\right\}\)\\
+	      \(\Sigma_K=\left\{f_i,i\in\overline{1,2}\right\},f_1(p)=p(a),f_2(b)=p(b)\)
+	\item Симплексный КЭ порядка \(m\) в \(\mathbb{R}^n\)\\
+	      \(K=\left\{\sum_{i=1}^{n+1}\lambda_i{x_i},\text{ где }0\le\lambda_i\le{1},\sum_{i=1}^{n+1}\lambda_i=1,x_i\in\mathbb{R}^n,i\in\overline{1\dots{n+1}}\right\}\), где \(x_i=\left[x\indices{^1_i}{\dots}x\indices{^n_i}\right]\), что\\
+        \(\mathrm{det}\left(\begin{matrix} x\indices{^1_1}& \dots & x\indices{^1_{n+1}} \\ \vdots & \ddots & \vdots \\ x\indices{^n_1} & \dots & x\indices{^n_{n+1}} \\ 1 & \dots & 1 \end{matrix}\right){\neq}0\),
+        \({\forall}\symbf{x}\in\mathbb{R}^n\) определены числа \(L_h(\symbf{x},i\in\overline{1{\dots}{n+1}}\) такие, что \(\sum_{i=1}^{n+1}L_i(x)x_i=x\), тогда \(L_i(x)\) -- барицентрические координаты \(x\in\mathbb{R}^n\).\\
+        \(L_{n+1}(\symbf{x})=1-\sum_{i=1}^{n}L_i(\symbf{x})\)\\
+        \(P_k=P_m(K)=\left\{\sum_{ |\alpha|{\le}m }a_\alpha\tau^\alpha,\tau{\in}K,a_\alpha\in\mathbb{R}\right\}\)\\
+        \(\Sigma_K=\left\{f_i,i\in\overline{1{\dots}N_k}\right\}, N_k=\symrm{dim}P_K=C^{m+n}_m\)\\
+        \(f_i(p)=p(a\indices{^k_i}),a\indices{^k_i}{\in}K\)\\
+        \(L_j(a\indices{^k_i}){\in}\left\{0,\frac{1}{m}\dots\frac{m-1}{m},1\right\}, j=\overline{1{\dots}n+1}\)
+\end{itemize}
+
+\begin{theorem}
+  Пусть \(K,P_K,\Sigma_K\) -- симплексный КЭ порядка \(m\) в \(\mathbb{R}^n\). Тогда \(\Sigma_K\) является \(P_K\) унисольвентным и \(X_h{\subset}C(\bar{\Omega})\)
+\end{theorem}
 
 \end{document}
