@@ -4,4 +4,58 @@
 
 \section{Метрическое пространство. Примеры метрических пространств. Окрестность, граница и граничная точка в метрическом пространстве. Линейное пространство. Примеры линейных пространств. Нормированное пространство. Примеры нормированных пространств. Евклидово пространство. Неравенство Коши-Буняковского. Пространство непрерывно дифференцируемых функций.}
 
+\begin{definition}[Метрическое пространство]
+	Метрическим пространством называется пара $(\mathbf{X},\rho)$, где $\mathbf{X}\ne\emptyset$ - произвольное множество, $\rho:\mathbf{X}\times\mathbf{X}\rightarrow\mathbb{R}$:
+	\begin{itemize}
+		\item $\forall a,b\in\mathbf{X}\quad\rho(a,b)\ge 0$
+		\item $\forall a,b\in\mathbf{X}\quad\rho(a,b)=0\Leftrightarrow a=b$
+		\item $\forall a,b\in\mathbf{X}\quad\rho(a,b)=\rho(b,a)$
+		\item $\forall a,b,c\in\mathbf{X}\quad\rho(a,b)\le\rho(a,c)+\rho(c,b)$
+	\end{itemize}
+\end{definition}
+Пример: $\mathbb{R}^n,\quad x=(x_1\dots x_n),\quad\rho(x,y)=\sqrt{\sum\limits_{i=1}^n(x_i-y_i)^2}$
+\begin{definition}[Окрестность]
+	$\sqsupset x\in\left(\mathbf{X},\rho\right)$. Тогда окрестностью точки $x$ называется множество $U_r(x)=\{y\in\mathbf{X}\mid\rho(x,y)<r\}$
+\end{definition}
+\begin{definition}[Граница и граничная точка]
+	$\sqsupset A\subset\mathbf{X},x\in A.$ Тогда точка $x$ называется граничной, если\\ $\forall U(x)\quad\exists y,z\in\mathbf{X}:\quad y\in U(x)\wedge z\not\in U(x)$
+\end{definition}
+\begin{definition}[Линейное пространство]
+	Линейным пространством над $\mathbb{R}$ называется тройка $\left(\mathbf{V},+,\cdot\right)$, где $\mathbf{V}\ne\emptyset$ - произвольное множество,элеинты которого называются векторами, $+:\quad\mathbf{V}\times\mathbf{V}\rightarrow\mathbf{V}$ - сложение векторов, $\cdot:\quad\mathbb{R}\times\mathbf{V}\rightarrow\mathbf{V}$ - умножение ветора на число. При этом выполняются свойства:
+	\begin{itemize}
+		\item $\forall a,b,c\in\mathbf{V}\quad a+(b+c)=(a+b)+c$
+		\item $\forall a,b\in\mathbf{V}\quad a+b=b+a$
+		\item $\exists\bar{0}\in\mathbf{V}:\forall a\in\mathbf{V}\quad a+0=0+a=a$
+		\item $\forall a\in\mathbf{V}\quad\exists(-a)\in\mathbf{V}\quad a+(-a)=(-a)+a=0$
+		\item $\forall a\in\mathbf{V}\quad 1\cdot a=a$
+		\item $\forall\lambda,\mu\in\mathbb{R}\quad(\lambda+\mu)a=\lambda a+\mu a$
+		\item $\lambda(a+b)=\lambda a+\lambda b$
+		\item $\forall\lambda,\mu\in\mathbb{R}\quad\lambda(\mu a)=(\lambda\mu)a$
+	\end{itemize}
+\end{definition} 
+Пример: Пространство геометрических веторов (2D, 3D), пространство матриц и тензоров.
+\begin{definition}[Нормированное пространство]
+	ЛП, на котором введена норма, называется нормированным. Нормой на ЛП $\mathbf{V}$ называется отображение $\Vert\cdot\Vert:\mathbf{V}\rightarrow\mathbb{R}$, удовлетворяющее свойствам:
+	\begin{itemize}
+		\item $\forall a\in\mathbf{V}\quad\Vert a\Vert\ge 0$
+		\item $\forall a\in\mathbf{V}\quad\Vert a\Vert=0\Leftrightarrow a=0$
+		\item $\forall a,b\in\mathbf{V}\quad\Vert a+b\Vert\le\Vert a\Vert+\Vert b\Vert$
+		\item $\forall a\in\mathbf{V},\forall \lambda\in\mathbb{R}\quad\Vert\lambda a\Vert=\vert\lambda\vert\cdot\Vert a\Vert$
+	\end{itemize}
+\end{definition}
+Пример: $\mathbf{V}=\mathbb{R}^n,\quad\Vert(x_1\dots x_n)\Vert=\sqrt{\sum\limits_{i=1}^{n}x_i^2};\quad\quad\mathbf{V}=C[a,b],\quad\Vert f(x)\Vert_{chebysheva}=\max\limits_{\tau\in[a,b]}\vert f(\tau)\vert$.
+\begin{definition}[Евклидово пространство]
+	ЛП, на котором введено скалярное произведение, называется евклидовым. Скалярным произведением на ЛП $\mathbf{V}$ называется отображение $(\cdot,\cdot):\mathbf{V}\times\mathbf{V}\rightarrow\mathbb{R}$, удовлетворяющее свойствам:
+	\begin{itemize}
+		\item $\forall x\in\mathbf{V}\quad(x,x)\ge 0$
+		\item $\forall x\in\mathbf{V}\quad(x,x)=0\Leftrightarrow x=0$
+		\item $\forall x,y\in\mathbf{V}\quad(x,y)=(y,x)$
+		\item $\forall x,y,z\in\mathbf{V}\quad(x+y,z)=(x,z)+(y,z)$
+		\item $\forall x\in\mathbf{V},\forall\lambda\in\mathbb{R}\quad(\lambda x,y)=\lambda(x,y)$
+	\end{itemize}
+\end{definition}
+\begin{theorem}[НКБ]
+	Для произвольного скалярного произведения в евклидовом просранстве $\mathbf{V}\quad (x,y)^2\le(x,x)(y,y)$
+\end{theorem}
+Пример: $\mathbf{V}=C^n[a,b],\quad\forall x,y\in\mathbf{V}\quad(x,y)=\sum\limits_{i=0}^n\int\limits_a^b x^{(i)}(\tau)y^{(i)}(\tau)d\tau$
 \end{document}
