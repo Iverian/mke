@@ -4,4 +4,28 @@
 
 \section{Уравнение с ограниченным положительно определенным оператором. Теорема (лемма) Лакса-Мильграма.}
 
+\begin{theorem}
+	Пусть $A: H\rightarrow H$ сильно монотонный липшицев оператор в гильбертовом пространстве $H$. \\
+	Тогда $\forall f \in H \;\exists!\; x \in H$
+\end{theorem} 
+\begin{proof}
+	Пусть $\tau \neq 0, \; S_\tau x = x - \tau(Ax - f)$
+	\begin{gather*}
+		Ax = f \leftrightarrow S_\tau x = x\\
+		\rho^2(S_\tau x, \; S_\tau y) = ||S_\tau x - S_\tau y|| = ||x - y - \tau(Ax - Ay)||^2 = ||x - y||^2 2\tau(Ax - Ay, x-y) + \tau^2||Ax - Ay|| \leq \\
+		\leq ||x-y||^2 - 2\tau m||x-y||^2 + \tau^2M^2||x-y||^2 = (1-2\tau m+\tau^2M^2)\rho^2(x,y)
+	\end{gather*}
+Подберём $\tau$ чтобы было $<1$ и $>0$
+\begin{gather*}
+	0 < 1 - 2\tau m + \tau^2 M^2 < 1 \;\;\; \tau\in(0, \frac{2m}{M^2})\\
+	\rho(S_\tau x, S_\tau y) \leq L(\tau)\rho(x,y)\\
+	0 < L(\tau) < 1
+\end{gather*}
+\end{proof}
+\begin{theorem}[Лемма Лакса-Мильграма]
+	Пусть $B$-ограниченная положительно-определённая билилнейная форма,\\ $f$-непрерывный линейный функционал в гильбертовом пространстве $H$. Тогда $\exists!\;u \in H$, что
+	$$
+	B(u, \tau) = f(v) \;\;\; \forall v \in H
+	$$
+\end{theorem}
 \end{document}
