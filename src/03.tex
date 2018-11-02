@@ -4,4 +4,47 @@
 
 \section{Фундаментальная последовательность в метрическом пространстве. Полное метрическое пространство. Гильбертово пространство. Уравнение с липшицевым сильно монотонным оператором в гильбертовом пространстве. Теорема существования и единственности решения.}
 
+\begin{definition}
+    Метрическое пространство.\\
+    $X$ - некоторое множество с заданым на нем $p: X \times X \Rightarrow R $, которое обладает свойствами:\\
+    \begin{enumerate}
+        \item $p(x,y) \geq 0 : p(x,y) = 0 \leftrightarrow x=y$
+        \item $p(x,y) = p(y,x)$
+        \item $p(x,y) \leq p(x,z) + p(z,y)$
+    \end{enumerate}
+    Пример.\\
+    $p(x,y) = \sqrt{\sum_{i=1}^n (x_i - y_i)^2}$
+\end{definition}
+
+\begin{definition}
+    Фундаментальная последовательность в метрическом пространстве.\\
+    Пусть $X$ - метрическое пространство\\
+    $a_n \ \forall \varepsilon > 0 : \exists N(\varepsilon) : \forall m,n > N(\varepsilon) \ p(a_n,a_m)< \varepsilon$
+\end{definition}
+
+\begin{definition}
+    Полное метрическое пространство.\\
+    Метрическое пространство $(x,p)$ называется полным, если всякая фундаментальная последовательность сходится к элементу $X$.
+\end{definition}
+
+\begin{definition}
+    Гильбертово пространство.\\
+    Гильбертово пространство - банохово пространство, норма которого порождена положительно определенным скалярным произведением.
+\end{definition}
+
+\textbf{Теорема.}\\
+Пусть $A: H \Rightarrow H$ сильно монотонный липшицев оператор в гильбертовом пространстве $H$. Тогда $\forall f \in H \exists ! x \in H$.\\
+$Ax = f$
+\begin{proof}
+    Пусть $\tau \neq 0, S_{\tau} \circ x = x - \tau(Ax-f)$\\
+    $Ax = f \Leftrightarrow S_{\tau} \circ x = x$\\
+    $\rho^2 (S_{\tau} \circ x, S_{\tau} \circ y) = ||S_{\tau}x - S_{\tau}y||^2 = ||x - y - \tau(Ax - Ay)||^2 = ||x-y||^2 - 2\tau (Ax - Ay,x-y) + \tau^2 ||Ax - Ay||^2 \leq ||x - y||^2 - 2\tau m ||x-y||^2 + \tau^2 M^2 ||x-y||^2 = (1-2\tau m + \tau^2 M^2) \rho^2 (x,y)$\\
+    Подберем $\tau$, чтобы было $<1$ и $>0$\\
+    $0 < 1-2\tau m + \tau^2 M^2 <1$\\
+    $\tau \in (0,\frac{2m}{M^2})$\\
+    $\rho (S_{\tau} \circ x, S_{\tau} \circ y) \leq L(\tau) \rho(x,y)$\\
+    $0<L(\tau)<1$
+\end{proof}
+
+
 \end{document}

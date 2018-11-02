@@ -52,27 +52,20 @@ $$
 	
 	\item Учитываем условия граничные (первого рода)
 	
-	\begin{gather*}
-	\begin{flushleft}
-	for (i : a_i \in \Sigma) \\
-	\quad f_i = F_i \left(\omega_h\right) \\
-	\quad G_{ij} = 1
-	\end{flushleft}
-	\end{gather*}
-	
+	for (i : $a_i \in \Sigma$) \\
+	${\quad}$ $f_i = F_i \left(\omega_h\right)$ \\
+	${\quad \quad}G_{ij} = 1$ 
+
+
 	\item Сборка глобальной СЛАУ (основная часть)
 	
-	\begin{gather*}
-	\begin{flushleft}
-	for (K \in T_n) \\
-	\quad for (i=1...N_K) \\
-	\quad \quad	if (a_{g(i)} \notin \Sigma) \\
-	\quad \quad \quad for (j = 1 ...N_K) \\
-	\quad \quad \quad \quad	if (a_{g(j)}\notin \Sigma)\\
-	\quad \quad \quad \quad \quad G_{g(i) g(j)} += G^K_{ij} \\
-	\quad \quad \quad \quad else \\
-	\quad \quad \quad \quad \quad f_{g(i)} -= G^K_{ij} f_{g(j)}
-	\end{flushleft}
-	\end{gather*}
+	for ($K \in T_n$) \\
+	${\quad}$ for (i=1...$N_K$) \\
+	${\quad \quad}$ if ($a_{g(i)} \notin \Sigma$) \\
+	${\quad \quad \quad}$ for (j = 1 ... $N_K$) \\
+	${\quad \quad \quad \quad}$ if ($a_{g(j)}\notin \Sigma$) \\
+	${\quad \quad \quad \quad \quad}$ $G_{g(i) g(j)} += G^K_{ij}$ \}\\
+	${\quad \quad \quad \quad}$	else \\
+	${\quad \quad \quad \quad \quad}$ $f_{g(i)} -= G^K_{ij} f_{g(j)}$ \\
 \end{enumerate}
 \end{document}

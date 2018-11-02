@@ -4,4 +4,52 @@
 
 \section{Метод Галеркина. Лемма Сеа. Явный вид СЛАУ, к которой приводит метод. Лемма об условиях сходимости метода к точному решению.}
 
+\begin{definition}[Метод Галёркина]
+	Пусть $H_{(.)}$ - последовательность замкнутых подпространств в $H.$
+	Тогда приближённым решением по методу Галёркина будет:
+	\begin{gather*}
+	U_n \in H_n,\\
+	\forall V_n \in H_n: B(U_n,V_n)=f(V_n).
+	\end{gather*}
+\end{definition}
+
+\begin{theorem}[Лемма Сеа]
+	Пусть $U_n$ - приближённое решение по методу Галёркина. Тогда
+	\begin{gather*}
+	\parallel U-U_n\parallel\le\frac{M}{m}\parallel U-V_n\parallel\;\forall V_n\in U_n.
+	\end{gather*}
+\end{theorem}
+
+\begin{proof}
+\begin{gather*}
+B(U-U_n ,U-U_n)=B(U-U_n ,U-V_n)+B(U-U_n ,V_n-U_n)=\\
+B(U-U_n ,U-V_n)+\underbrace{B(U,V_n-U_n)}_{f(V_n-U_n)}-\underbrace{B(U_n,V_n-U_n)}_{f(V_n-U_n)}=
+B(U-U_n,U-V_n).\\
+m\parallel U-U_n\parallel^2\le B(U-U_n,U-U_n)=B(U-U_n,U-V_n)\le M\parallel U-U_n\parallel\parallel U-V_n\parallel
+\end{gather*}
+\end{proof}
+	\begin{theorem}[Лемма о сходимости ( следствие из Сеа )]Пусть $H_{(.)}$ предельно плотно в $H$. Тогда последовательность $U_{(.)}$ по методу Галёркина сходится к точному решению задачи.
+\end{theorem}
+	Рассмотрим пример метода Галёркина, который мне удалось найти, а именно решение дифференциального ур-я методом КЭ.\\
+	$C^n_0[a,b]=\left\{x\in C^n[a,b]: x(a)=x(b)=0\right\}.$\\
+	Пусть $p\in C^1[a,b];\;q,f\in C[a,b];\;p(\tau)\ge c_0=const;\;q(\tau)\ge 0\;\forall\tau\in[a,b];\;U\in C^2_0[a,b]$ и
+	\begin{gather*}
+	\begin{cases}
+	\mathbf{L}U=-\frac{d}{d\tau}\left(p\frac{dU}{d\tau}\right)+qU=f,\\
+	U(a)=U(b)=0
+	\end{cases}.
+	\end{gather*}
+	
+	Берём произвольную ф-ю $V\in C^1_0[a,b]$, домножаем и интегрируем:
+	\begin{gather*}
+-\int\limits_a^b V\left[\frac{d}{d\tau}\left(p\frac{dU}{d\tau}\right)+qU\right]d\tau=
+\underbrace{\int\limits_a^b\left(pU\prime V\prime+qUV\right)d\tau}_{B(U,V)}
+	=\underbrace{\int\limits_a^b Vfd\tau}_{f(V)}\Rightarrow\\
+	B(U,V)=f(V)\;\forall V\in C^1_0[a,b]\Rightarrow
+	\int\limits_a^b\left(\mathbf{L}U-f\right)Vd\tau=0.\\
+	Let\;U_n(\tau)=\sum\limits_{i=1}^{n-1}c_i h_i(\tau),\;\Rightarrow
+	B(U_n,V)=\sum\limits_{i=1}^{n-1}c_i B(h_i,V)=f(V).\\
+	Let\;V=h_j,\;\Rightarrow\sum\limits_{i=1}^{n-1}c_i \underbrace{B(h_i,h_j)}_{K^i_j}=\underbrace{f(h_j)}_{f}
+	\end{gather*}
+	Тогда получим явный вид СЛАУ: $Kc=f$, a $h_j$ - например линейный сплайны.
 \end{document}
